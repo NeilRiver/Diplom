@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebApplication4.Models.Item>
+<style>
+    .row.item {
+        font-size: 12px;
+        margin: 0px;
+        padding: 0px;
+    }
+    .listitem:hover{
+        background-color:#cfcfcf;
+    }
+</style>
+<div class="container" style="height:500px;padding:0px;">
+    @foreach (var item in Model)
+    {
+        <a id="itemlink" href="@Url.Action("AddItemCart","Home",new { id=item.Id})" onclick="event.preventDefault(); var url ='@Url.Action("AddItemCart","Home",new { id=item.Id})';
+        $.get(url,function(data){$('#message').text(data);replaseing();});return false;">
+            <div class="listitem col-xs-12 ">
+                <div class="row item" style="height:35px;">
+                    <div class="col-xs-1">
+                        @item.Id
+                    </div>
+                    <div class="col-xs-8">
+                        @item.Name
+                    </div>
+                    <div class="col-xs-3">
+                        @item.Price.ToString("N0")
+                    </div>
+                </div>
+            </div>
+        </a>
+
+    }
+    <a id="itemlink" href="#">
+        <div class="listitem col-xs-12 ">
+            <div class="row item" style="height:0px;">
+                <div class="col-xs-1">
+
+                </div>
+                <div class="col-xs-8">
+
+                </div>
+                <div class="col-xs-3">
+
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+<script>
+  
+   
+
+    function replaseing() {
+    
+        $("#message").animate({
+            opacity: 1
+          
+        }, 350, function () {
+            $(this).animate({ opacity: 0 }, 5000, function () { })
+        });
+        $("#cart").load("@Url.Action("CartItemList", "Home")");
+
+    
+    }
+
+
+
+
+</script>

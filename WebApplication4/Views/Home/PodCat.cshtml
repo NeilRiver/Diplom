@@ -1,0 +1,9 @@
+﻿@model IEnumerable<WebApplication4.Models.PodCategory>
+
+@foreach (var item in Model)
+{
+    <a href="@Url.Action("ListItem","Home",new { Id = item.Id })" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#listitem">
+        <div class="col-xs-12 coltext poloska" style="height:20px;">@Html.DisplayFor(modelItem => item.Name)</div>
+        </a>
+        }
+

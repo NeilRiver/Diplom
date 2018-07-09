@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title – приложение ASP.NET</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    
+ <style>
+     body{
+         background-color:#ebeff4;
+     }
+ </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Дипломный проект", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
+                    <li>@Html.ActionLink("О программе", "About", "Home")</li>
+                    
+                    @if (Session["Auth"] != null)
+                    {
+                        if ((bool)Session["Auth"] == true)
+                        {
+                            <li>@Html.ActionLink("Заказы", "Contact", "Home")</li>
+                    <li><a href="@Url.Action("LogOff","Home")">Выход</a></li> }
+
+                    }
+                    else
+                    {
+                        <li data-toggle="modal" data-target="#login" style="color:white;"><a href="#">Войти</a></li> 
+                    }
+                </ul>
+               
+                        <div class="col-xs-5" id="message" style="opacity:0; text-align:right; color:white;"></div>
+                  
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <br />
+        @RenderBody()
+    </div>
+
+    @RenderSection("scripts", required: false)
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            @using (Html.BeginForm("LogOn","Home",FormMethod.Post))
+            {<p class="label">Логин</p>
+                <input class="form-control" type="text" name="login" /><br />
+                <p class="label"> Пароль</p>
+                                <input class="form-control" type="password"  name="password"/><br />
+                                <input class="form-control" type="submit" value="Войти" />
+            }
+        </div>
+    </div>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>
+
+
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+</body>
+
+
+
+</html>

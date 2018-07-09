@@ -1,0 +1,77 @@
+﻿@model IEnumerable<WebApplication4.Models.ItemOrder>
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-3">
+            Заказчик:
+        </div>
+        <div class="col-xs-9">
+            @ViewBag.FIO
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-xs-3">
+                Сумма заказа:
+            </div>
+            <div class="col-xs-9">
+             @ViewBag.Price.ToString("N0")
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">
+                Телефон:
+            </div>
+            <div class="col-xs-9">
+                @ViewBag.Telephone
+            </div>
+        </div>
+       
+    </div>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ItemId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price) 
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Brend)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Count)
+        </th>
+    
+    </tr>
+
+@foreach (var item in Model) {
+    if (@item.ItemId.ToString() == "2")
+    {
+
+    }
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @item.Price.ToString("N0") бел.руб.
+        </td>
+    
+        <td>
+            @Html.DisplayFor(modelItem => item.Brend)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Count)
+        </td>
+        
+    </tr>
+}
+
+</table>

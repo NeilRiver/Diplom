@@ -1,0 +1,49 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.coltext *{
+
+     font-size:15px;
+     color:black;
+}
+
+/*.col-xs-12.coltext.poloska:hover {
+        background-color:#a9ce95;
+    text-decoration:none;
+}*/
+.listitem{
+    margin:0px;
+    padding:0px;
+}
+
+.listitem *{
+    font-size:12px;
+    margin:0px;
+    padding:0px;
+}
+.body-content{
+      margin:0px;
+    padding:0px;
+    width:100%;
+}
+.content{
+  
+  
+}
+#poloska:hover{
+    background-color:red;
+}

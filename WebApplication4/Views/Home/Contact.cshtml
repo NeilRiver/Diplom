@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebApplication4.Models.Order>
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Заказы</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+           ФИО
+        </th>
+        <th>
+            Телефон
+        </th>
+        <th>
+          Сумма
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+
+    string Trstyle = "danger";
+
+
+    if (item.Status == 0) { Trstyle = "info"; }
+    if (item.Status == 1) { Trstyle = "success"; }
+    
+    <tr class='@Trstyle'>
+        <td>
+            @Html.DisplayFor(modelItem => item.FIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telephone)
+        </td>
+        <td>
+            @item.Price.ToString("N0") бел.руб.
+        </td>
+        <td>
+
+           
+            <a href="#" onclick="event.preventDefault(); $('#listing').load('@Url.Action("Details", "Home", new { id = item.Id })');" data-toggle="modal" data-target="#myModal">Подробно</a>
+
+        </td>
+        <td>
+
+        
+            <a href="#" onclick="$.post('@Url.Action("Delete","Home")', {id:'@item.Id'}); window.location.reload();"> <div class="glyphicon glyphicon-remove"></div></a>
+
+        </td>
+    </tr>
+}
+
+</table>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+       
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" onclick="window.location.reload();" id="resett" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Заказ</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="container">
+                        <div class="row" id="listing" style="height:300px; overflow-y:auto;">
+
+                        </div>
+                    </div>
+
+               
+            </div>
+        
+    </div>
+</div>

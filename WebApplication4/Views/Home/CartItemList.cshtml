@@ -1,0 +1,265 @@
+﻿@using WebApplication4.Infrastructura;
+@model CartConfiguration
+<style>
+    .itemcart {
+        border-bottom: 1px dotted #b6ff00;
+    }
+
+        .itemcart * {
+            font-size: 13px;
+            margin: 0px;
+            padding: 0px;
+        }
+</style>
+<div class="container" style="height:380px;background-color:white;margin:5px;padding:0px;overflow-y:auto;">
+    <div class="row"  style="min-height:100%;margin:0px;padding:0px;">
+
+
+        @*@foreach (var a in Model.list)*@
+        <b> Процессор:</b><br />
+       @if (Model.Processors != null)
+       {
+       
+               <div class="col-xs-12 itemcart">
+               
+                <div class="container">
+                    <div class="row">
+                        @*<div class="col-xs-2">
+                                @a.Id
+                            </div>*@
+                        <div class="col-xs-12">
+                            <b>  @Model.Processors.Name</b>
+                        </div>
+                        <div class="col-xs-11">
+                            @Model.Processors.Price.ToString("N0") бел.руб.
+                        </div>
+                        <div class="col-xs-1">
+                           <a href="@Url.Action("Remove","Home",new { code=1})" style="background-color:red;padding-left:2px;padding-right:2px;border:1px solid black;" onclick="event.preventDefault();
+        $.get('@Url.Action("Remove","Home",new { code=1})',function(data){$('#message').text(data);replaseing();});return false; ">X</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <b> Материнская плата:</b> <br />
+        @if (Model.motherboard != null)
+        {
+
+
+            <div class="col-xs-12 itemcart">
+                <div class="container">
+                    <div class="row">
+                        @*<div class="col-xs-2">
+                            @a.Id
+                        </div>*@
+                        <div class="col-xs-12">
+                            <b>  @Model.motherboard.Name</b>
+                        </div>
+                        <div class="col-xs-11">
+                            @Model.motherboard.Price.ToString("N0") бел.руб.
+                        </div>
+                        <div class="col-xs-1">
+                            <a href="@Url.Action("Remove","Home",new { code=2})"style="background-color:red;padding-left:2px;padding-right:2px;border:1px solid black;" onclick="event.preventDefault();
+        $.get('@Url.Action("Remove","Home",new { code=2})',function(data){$('#message').text(data);replaseing();});return false; ">X</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <b> Жесткие диски:</b> <br />
+        @if (Model.HardDrive != null)
+        {
+            foreach (var it in Model.HardDrive)
+            {
+            <div class="col-xs-12 itemcart">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <b>@it.Name</b>
+                        </div>
+                        <div class="col-xs-11">
+                            @it.Price.ToString("N0") бел.руб.
+                        </div>
+                        <div class="col-xs-1">
+                            <a href="@Url.Action("Remove","Home",new { code=3,id=it.Id})"style="background-color:red; padding-left:2px;padding-right:2px;border:1px solid black;" onclick="event.preventDefault();
+        $.get('@Url.Action("Remove","Home",new { code=3, id = it.Id })',function(data){$('#message').text(data);replaseing();});return false; ">X</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        }
+        <b> Оперативная память:</b> <br />
+        @if (Model.Ram != null)
+        {
+            foreach (var it in Model.Ram)
+            {
+                <div class="col-xs-12 itemcart">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <b>@it.Name</b>
+                            </div>
+                            <div class="col-xs-11">
+                                @it.Price.ToString("N0") бел.руб.
+                            </div>
+                            <div class="col-xs-1">
+                                <a href="@Url.Action("Remove","Home",new { code=4,id=it.Id})" style="background-color:red; padding-left:2px;padding-right:2px;border:1px solid black;" onclick="event.preventDefault();
+        $.get('@Url.Action("Remove","Home",new { code=4, id = it.Id })',function(){replaseing();});return false; ">X</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        <b> Кулер:</b> <br />
+        @if (Model.Cooler != null)
+        {
+            <div class="col-xs-12 itemcart">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <b>@Model.Cooler.Name</b>
+                        </div>
+                        <div class="col-xs-11">
+                            @Model.Cooler.Price.ToString("N0") бел.руб.
+                        </div>
+                        <div class="col-xs-1">
+                            <a href="@Url.Action("Remove","Home",new { code=5})" style="background-color:red; padding-left:2px;padding-right:2px;border:1px solid black;" onclick="event.preventDefault();
+        $.get('@Url.Action("Remove","Home",new { code=5})',function(data){$('#message').text(data);replaseing();});return false; ">X</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <b> Приводы:</b> <br />
+        @if (Model.CdRom != null)
+        {
+            foreach (var it in Model.CdRom)
+            {
+                <div class="col-xs-12 itemcart">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <b>@it.Name</b>
+                            </div>
+                            <div class="col-xs-11">
+                                @it.Price.ToString("N0") бел.руб.
+                            </div>
+                            <div class="col-xs-1">
+                                <a href="@Url.Action("Remove","Home",new { code=6,id=it.Id})" style="background-color:red; padding-left:2px;padding-right:2px;border:1px solid black;" onclick="event.preventDefault();
+        $.get('@Url.Action("Remove","Home",new { code=6, id = it.Id })',function(data){$('#message').text(data);replaseing();});return false; ">X</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        <b> Видеокарты:</b> <br />
+        @if (Model.GraphicsCard != null)
+        {
+            foreach (var it in Model.GraphicsCard)
+            {
+                <div class="col-xs-12 itemcart">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <b>@it.Name</b>
+                            </div>
+                            <div class="col-xs-11">
+                                @it.Price.ToString("N0") бел.руб.
+                            </div>
+                            <div class="col-xs-1">
+                                <a href="@Url.Action("Remove","Home",new { code=7,id=it.Id})" style="background-color:red; padding-left:2px;padding-right:2px;border:1px solid black;" onclick="event.preventDefault();
+        $.get('@Url.Action("Remove","Home",new { code=7, id = it.Id })',function(data){$('#message').text(data);replaseing();});return false; ">X</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        <b> Корпус:</b> <br />
+        @if (Model.Case != null)
+        {
+            <div class="col-xs-12 itemcart">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <b>@Model.Case.Name</b>
+                        </div>
+                        <div class="col-xs-11">
+                            @Model.Case.Price.ToString("N0") бел.руб.
+                        </div>
+                        <div class="col-xs-1">
+                            <a href="@Url.Action("Remove","Home",new { code=8})" style="background-color:red; padding-left:2px;padding-right:2px;border:1px solid black;" onclick="event.preventDefault();
+        $.get('@Url.Action("Remove","Home",new { code=8 })',function(data){$('#message').text(data);replaseing();});return false; ">X</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <b> Блок питания:</b> <br />
+        @if (Model.PowerUnit != null)
+        {
+            <div class="col-xs-12 itemcart">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <b>@Model.PowerUnit.Name</b>
+                        </div>
+                        <div class="col-xs-11">
+                            @Model.PowerUnit.Price.ToString("N0") бел.руб.
+                        </div>
+                        <div class="col-xs-1">
+                            <a href="@Url.Action("Remove","Home",new { code=9})" style="background-color:red; padding-left:2px;padding-right:2px;border:1px solid black;" onclick="event.preventDefault();
+        $.get('@Url.Action("Remove","Home",new { code=9 })',function(data){$('#message').text(data);replaseing();});return false; ">X</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <b> SSD:</b> <br />
+        @if (Model.SSD != null)
+        {
+            foreach (var it in Model.SSD)
+            {
+                <div class="col-xs-12 itemcart">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <b>@it.Name</b>
+                            </div>
+                            <div class="col-xs-11">
+                                @it.Price.ToString("N0") бел.руб.
+                            </div>
+                            <div class="col-xs-1">
+                                <a href="@Url.Action("Remove","Home",new { code=10,id=it.Id})" style="background-color:red; padding-left:2px;padding-right:2px;border:1px solid black;" onclick="event.preventDefault();
+        $.get('@Url.Action("Remove","Home",new { code=10, id = it.Id })',function(data){$('#message').text(data);replaseing();});return false; ">X</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div style="font-size:15px; margin-left:5px;">Общая сумма:</div>
+        </div>
+        <div class="col-lg-12">
+            <div style="text-align:right;margin:auto;margin-right:5px; color:black;">
+            @if (ViewBag.allPrice != null)
+            {
+                <b style="font-size:20px;">
+                @ViewBag.allPrice.ToString("N0")
+                 </b>
+            }
+            else {
+                <b style="font-size:20px;"></b>
+                    } бел.руб.
+</div>
+        </div>
+    </div>
+</div>

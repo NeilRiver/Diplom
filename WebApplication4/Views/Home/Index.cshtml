@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model IEnumerable <WebApplication4.Models.Category>
+
+    <div class="container-fluid">
+        <div class="row coltext" style="height:500px;margin:0px;padding:0px;">
+            <div class="col-xs-2 coltext" style="height:500px;overflow-y:auto; margin:0px;padding:0px;padding-top:25px; padding-bottom:25px; border-radius:25px 0px 0px 25px;background-color:#D9544F">
+             @foreach (var a in Model)
+             {<a href="@Url.Action("PodCat","Home",new { Id = a.Id })" class="poloska" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#podcat">
+                    <div class="col-xs-12 coltext poloska" style="height:35px;">
+                        @a.Name
+                    </div>
+                </a>
+             }
+            </div>
+            <div class="col-xs-2" style="background-color:#52AE35; margin:0px;">
+                <div class="row" id="podcat" style="padding-top:25px; padding-bottom:25px;height:500px; overflow-y:auto;">
+                  
+
+                </div>
+            </div>
+            <div class="col-xs-5" style="margin:0px;">
+                <div class="row" id="listitem" style="padding-top:25px; padding-bottom:25px;height:500px; overflow-y:auto;">
+
+
+                </div>
+            </div>
+
+            <div class="col-xs-3"style="min-height:100%;background-color:#52AE35;margin:0px;padding:0px; border-radius:25px 25px 0px 25px;">
+                <div class="container" style="margin-top:5px;">
+                    <div class="row">
+                        <div class="col-xs-8">
+                            Ваши комплектующие:
+                        </div>
+                        <div class="col-xs-3">
+                            <a href="@Url.Action("Clear","Home")">Очистить</a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="container" >
+                        
+                        <div id="cart" class="row">
+                            @Html.Action("CartItemList", "Home")
+                        </div>
+                    </div>
+             
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <div class="col-lg-12">
+                                <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal" style="width:97%; border-radius:0px 0px 0px 25px;margin:5px;">Заказать</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+    </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+@using (Html.BeginForm("SaveOrder", "Home", FormMethod.Post))
+{
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Оформление заказа</h4>
+            </div>
+            <div class="modal-body">
+             
+                <div class="form-group">
+                    <label for="FIO">ФИО</label>
+                    <input type="text" class="form-control" id="FIO" name="FIO" placeholder="Фамилия Имя Отчество">
+                </div>
+                <div class="form-group">
+                    <label for="Telephone">Телефон</label>
+                    <input type="text" class="form-control" id="Telephone" name="Telephone" placeholder="Телефон">
+                </div>          
+            </div>
+            <div class="modal-footer">
+               
+                <button type="submit" class="btn btn-danger">Заказать</button>
+            </div>
+        </div>
+}
+    </div>
+</div>
